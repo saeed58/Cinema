@@ -3,6 +3,7 @@ import logo from "./assets/img/logo.png";
 import { ColorModeButton } from "./components/ui/color-mode";
 import { BsSearch } from "react-icons/bs";
 import { InputGroup } from "./components/ui/input-group";
+import CategoriesList from "./react-query/CategoriesList";
 
 const App = () => {
   return (
@@ -30,8 +31,8 @@ const App = () => {
           </HStack>
         </GridItem>
 
-        <GridItem area="aside" bg="orange" hideBelow="md">
-          aside
+        <GridItem area="aside"  hideBelow="md">
+          <CategoriesList/>
         </GridItem>
 
         <GridItem area="main" bg="blue">
