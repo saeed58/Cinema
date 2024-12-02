@@ -1,4 +1,4 @@
-import { Grid, GridItem, HStack, Image, Input } from "@chakra-ui/react";
+import { Box, Grid, GridItem, HStack, Image, Input } from "@chakra-ui/react";
 import logo from "./assets/img/logo.png";
 import { ColorModeButton } from "./components/ui/color-mode";
 import { BsSearch } from "react-icons/bs";
@@ -31,8 +31,10 @@ const App = () => {
           </HStack>
         </GridItem>
 
-        <GridItem area="aside"  hideBelow="md">
-          <CategoriesList/>
+        <GridItem area="aside"  hideBelow="md" >
+        <Box maxH="82vh" overflowY="auto" scrollBehavior="smooth" scrollbar='hidden'>
+          <CategoriesList />
+        </Box>
         </GridItem>
 
         <GridItem area="main" bg="blue">
