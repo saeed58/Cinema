@@ -1,5 +1,5 @@
 import { Movies } from "@/entities/Movies";
-import { Button, Image, Text } from "@chakra-ui/react";
+import { Image } from "@chakra-ui/react";
 import { Card } from "@chakra-ui/react/card";
 import { Stack } from "@chakra-ui/react/stack";
 import { useQuery } from "@tanstack/react-query";

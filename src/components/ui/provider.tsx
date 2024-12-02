@@ -8,21 +8,21 @@ import {
 
 
 
-// const system = createSystem(defaultConfig, {
-//   theme: {
-//     tokens: {
-//       fonts: {
-//         heading: { value: 'samim' },
-//         body: { value: 'samin' },
-//       },
-//     },
-//   },
-// })
+const system = createSystem(defaultConfig, {
+  theme: {
+    tokens: {
+      fonts: {
+        heading: { value: 'iransans-rtl' },
+        body: { value: 'iransans-rtl' },
+      },
+    },
+  },
+})
 
 export function Provider(props: ColorModeProviderProps) {
   return (
-    <ChakraProvider value={defaultSystem}>
-    {/* <ChakraProvider value={system}> */}
+    // <ChakraProvider value={defaultSystem}>
+     <ChakraProvider value={system}> 
       <ColorModeProvider {...props} />
     </ChakraProvider>
   )

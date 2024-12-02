@@ -5,6 +5,7 @@ import { BsSearch } from "react-icons/bs";
 import { InputGroup } from "./components/ui/input-group";
 import CategoriesList from "./react-query/CategoriesList";
 import MovieList from "./react-query/MovieList";
+import MovieAllList from "./react-query/MovieAllList";
 
 const App = () => {
   return (
@@ -38,8 +39,8 @@ const App = () => {
         </Box>
         </GridItem>
 
-        <GridItem area="main" bg="blue">
-          <MovieList />
+        <GridItem area="main" >
+          <MovieAllList />
         </GridItem>
         
       </Grid>
