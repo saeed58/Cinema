@@ -1,17 +1,10 @@
 import { Tooltip } from "@/components/ui/tooltip";
+import { Categories } from "@/entities/category";
 import {  Image, List, ListItem } from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
-interface Category {
-  id: number;
-  name_fa: string;
-  image_path: string;
-}
 
-interface Categories {
-  data: Category[];
-}
 
 const CategoriesList = () => {
   const fetchCategories = () =>
@@ -25,6 +18,7 @@ const CategoriesList = () => {
   });
 
   return (
+
     <List.Root fontSize="sm" fontWeight="200" variant="plain" marginRight={2}>
       {data?.map((cat) => (
         <ListItem key={cat.id}>

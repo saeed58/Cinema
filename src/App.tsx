@@ -4,6 +4,7 @@ import { ColorModeButton } from "./components/ui/color-mode";
 import { BsSearch } from "react-icons/bs";
 import { InputGroup } from "./components/ui/input-group";
 import CategoriesList from "./react-query/CategoriesList";
+import MovieList from "./react-query/MovieList";
 
 const App = () => {
   return (
@@ -38,7 +39,7 @@ const App = () => {
         </GridItem>
 
         <GridItem area="main" bg="blue">
-          main
+          <MovieList />
         </GridItem>
         
       </Grid>
