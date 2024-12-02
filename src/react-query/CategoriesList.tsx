@@ -24,7 +24,7 @@ const fetchCategories = () =>
 
 
     return (
-      <List.Root>
+      <List.Root fontSize='sm' fontWeight='200'>
           {data?.map((cat) =>(
             <ListItem key={cat.id}>
                 {cat.name_fa}

@@ -1,0 +1,50 @@
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: bold;
+    src: url('eot/IRANSansWeb_Bold.eot');
+    src: url('eot/IRANSansweb_Bold.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
+    url('woff2/IRANSansweb_Bold.woff2') format('woff2'),  /* Chrome36+, Opera24+*/
+    url('woff/IRANSansweb_Bold.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+    url('ttf/IRANSansweb_Bold.ttf') format('truetype');
+}
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: 500;
+    src: url('eot/IRANSansweb_Medium.eot');
+    src: url('eot/IRANSansweb_Medium.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
+    url('woff2/IRANSansweb_Medium.woff2') format('woff2'),  /* Chrome36+, Opera24+*/
+    url('woff/IRANSansweb_Medium.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+    url('ttf/IRANSansweb_Medium.ttf') format('truetype');
+}
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: 300;
+    src: url('eot/IRANSansweb_Light.eot');
+    src: url('eot/IRANSansweb_Light.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
+    url('woff2/IRANSansweb_Light.woff2') format('woff2'),  /* Chrome36+, Opera24+*/
+    url('woff/IRANSansweb_Light.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+    url('ttf/IRANSansweb_Light.ttf') format('truetype');
+}
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: 200;
+    src: url('eot/IRANSansweb_UltraLight.eot');
+    src: url('eot/IRANSansweb_UltraLight.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
+    url('woff2/IRANSansweb_UltraLight.woff2') format('woff2'),  /* Chrome36+, Opera24+*/
+    url('woff/IRANSansweb_UltraLight.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+    url('ttf/IRANSansweb_UltraLight.ttf') format('truetype');
+}
+@font-face {
+    font-family: IRANSans;
+    font-style: normal;
+    font-weight: normal;
+    src: url('eot/IRANSansweb.eot');
+    src: url('eot/IRANSansweb.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
+    url('woff2/IRANSansweb.woff2') format('woff2'),  /* Chrome36+, Opera24+*/
+    url('woff/IRANSansweb.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+    url('ttf/IRANSansweb.ttf') format('truetype');
+}
