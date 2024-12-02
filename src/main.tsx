@@ -15,7 +15,7 @@ createRoot(document.getElementById("root")!).render(
     <QueryClientProvider client={queryClient}>
       <Provider>
         <App />
-        <ReactQueryDevtools />
+        <ReactQueryDevtools buttonPosition="bottom-left"  />
       </Provider>
     </QueryClientProvider>
   </StrictMode>
