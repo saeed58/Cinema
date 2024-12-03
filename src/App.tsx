@@ -4,8 +4,8 @@ import { ColorModeButton } from "./components/ui/color-mode";
 import { BsSearch } from "react-icons/bs";
 import { InputGroup } from "./components/ui/input-group";
 import CategoriesList from "./react-query/CategoriesList";
-import MovieList from "./react-query/MovieList";
 import MovieAllList from "./react-query/MovieAllList";
+import GenreList from "./react-query/GenreList";
 
 const App = () => {
   return (
@@ -40,6 +40,7 @@ const App = () => {
             scrollBehavior="smooth"
             scrollbar="hidden"
           >
+            <GenreList />
             <CategoriesList />
           </Box>
         </GridItem>

@@ -1,4 +1,4 @@
-import { Source } from "@/react-query/MovieAllList";
+import { Source } from "@/entities/Source";
 import {
   Badge,
   Box,
@@ -12,10 +12,10 @@ import {
 import no_image from "../../public/assets/No_image.png";
 const limit = 17;
 interface Props {
-    movie : Source;
+  movie: Source;
 }
-const MovieCard = ({movie} : Props) => (
-  <Card.Root  variant='subtle'  >
+const MovieCard = ({ movie }: Props) => (
+  <Card.Root variant="subtle">
     {movie.imdb_rank && (
       <Float offsetY="6" offsetX="-4">
         <Circle
@@ -35,9 +35,7 @@ const MovieCard = ({movie} : Props) => (
       </Float>
     )}
 
-    <Image
-      src={movie.poster_path ? movie.poster_path : no_image}
-    />
+    <Image src={movie.poster_path ? movie.poster_path : no_image} />
     <Box margin="10px">
       <Text fontSize="md">
         {movie.title_fa.substring(0, limit)}
