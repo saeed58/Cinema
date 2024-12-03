@@ -24,27 +24,37 @@ const App = () => {
         <GridItem area="nav">
           <HStack padding="10px">
             <Image src={logo} height="80px"></Image>
-            
-            <InputGroup flex='fit-content' startElement={<BsSearch />}>
-              <Input placeholder="Smooth Movie ..." borderRadius='50px' />
+
+            <InputGroup flex="fit-content" startElement={<BsSearch />}>
+              <Input placeholder="Smooth Movie ..." borderRadius="50px" />
             </InputGroup>
-            
+
             <ColorModeButton />
           </HStack>
         </GridItem>
 
-        <GridItem area="aside"  hideBelow="md" >
-        <Box maxH="82vh" overflowY="auto" scrollBehavior="smooth" scrollbar='hidden'>
-          <CategoriesList />
-        </Box>
+        <GridItem area="aside" hideBelow="md">
+          <Box
+            maxH="82vh"
+            overflowY="auto"
+            scrollBehavior="smooth"
+            scrollbar="hidden"
+          >
+            <CategoriesList />
+          </Box>
         </GridItem>
 
-        <GridItem area="main" >
-          <MovieAllList />
+        <GridItem area="main">
+          <Box
+            maxH="82vh"
+            overflowY="auto"
+            scrollBehavior="smooth"
+            scrollbar="hidden"
+          >
+            <MovieAllList />
+          </Box>
         </GridItem>
-        
       </Grid>
-      
     </>
   );
 };
