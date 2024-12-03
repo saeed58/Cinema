@@ -35,13 +35,14 @@ const App = () => {
 
         <GridItem area="aside" hideBelow="md">
           <Box
+            marginRight={5}
             maxH="82vh"
             overflowY="auto"
             scrollBehavior="smooth"
             scrollbar="hidden"
           >
             <GenreList />
-            <CategoriesList />
+            {/* <CategoriesList /> */}
           </Box>
         </GridItem>
 

@@ -1,10 +1,15 @@
 import { apiQuery } from "@/entities/apiQuery";
-import { Genre } from "@/entities/Genre";
-import { Source } from "@/entities/Source";
+import { Button } from "@chakra-ui/react";
+import { List } from "@chakra-ui/react/list";
+import { Stack } from "@chakra-ui/react/stack";
+
+
+
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 const GenreList = () => {
+
   const fetchGenre = () =>
     axios
       .get<apiQuery>("https://searchia.ir/api/index/genre", {
@@ -23,9 +28,20 @@ const GenreList = () => {
     queryFn: fetchGenre,
   });
   return (
-    <ul>
-    {data?.map((genre, index) => <li key={index}>{genre.source.name_fa}</li>)}
-    </ul>
+
+    <Stack align='flex-start' flex={1} gap={6}>
+        <List.Root variant='plain'>
+            {data?.map((genre, index) => 
+                <List.Item key={index} >
+                    <Button whiteSpace='normal' variant='plain' onClick={()=>console.log(genre.source.name_fa)}>
+                        {genre.source.name_fa}
+                    </Button>
+                </List.Item>
+            )}
+        </List.Root>
+    </Stack>
+    
+
   );
 };
 
