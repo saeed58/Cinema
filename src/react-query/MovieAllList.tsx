@@ -43,7 +43,7 @@ interface Entity {
 interface MoviesAll {
   entity: Entity;
 }
-
+const limit = 20;
 const MovieAllList = () => {
   const fetchMovies = () =>
     axios
@@ -66,7 +66,7 @@ const MovieAllList = () => {
   });
 
   return (
-    <SimpleGrid columns={5} marginLeft={5} gap={5}>
+    <SimpleGrid columns={{ xl: 6, lg: 4, md: 3, sm: 1 }} marginLeft={5} gap={5}>
       {data?.map(
         (movie) =>
           movie.source.is_active == 1 && (
@@ -96,7 +96,20 @@ const MovieAllList = () => {
                 }
               />
               <Box margin="10px">
-                <HStack>
+                <Text fontSize="md">
+                  {movie.source.title_fa.substring(0, limit)}
+                  {movie.source.title_fa.length > limit ? "..." : null}
+                </Text>
+
+                <HStack fontSize="sm" color="gray.500">
+                  {movie.source.genres.map((genre, index) => (
+                    <Badge size="xs" variant="outline" color="gray.500">
+                      {genre.name_fa}
+                    </Badge>
+                  ))}
+                </HStack>
+
+                <HStack marginTop={1}>
                   <Badge size="sm" variant="solid" colorPalette="teal">
                     {movie.source.publish_date + " " + movie.source.country}
                   </Badge>
@@ -105,14 +118,6 @@ const MovieAllList = () => {
                       سریال{" "}
                     </Badge>
                   ) : null}
-                </HStack>
-                <Text fontSize="lg">{movie.source.title_fa}</Text>
-                <HStack fontSize="sm" color="gray.500">
-                  {movie.source.genres.map((genre, index) => (
-                    <Text>
-                      {index == 0 ? genre.name_fa : "/ " + genre.name_fa}
-                    </Text>
-                  ))}
                 </HStack>
               </Box>
             </Card.Root>
