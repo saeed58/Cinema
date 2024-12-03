@@ -46,7 +46,7 @@ const MovieCard = ({movie} : Props) => (
 
       <HStack fontSize="sm" color="gray.500">
         {movie.genres.map((genre) => (
-          <Badge size="xs" variant="outline" color="gray.500">
+          <Badge size="xs" variant="outline" color="gray.500" key={genre.id}>
             {genre.name_fa}
           </Badge>
         ))}

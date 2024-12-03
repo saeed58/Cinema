@@ -63,8 +63,8 @@ const MovieAllList = () => {
     <SimpleGrid columns={{ xl: 6, lg: 4, md: 3, sm: 1 }} marginLeft={5} gap={5}>
       {isPending &&
         Skeletons.map((skeleton) => (
-          <MovieCardContainer>
-            <MovieSkeleon key={skeleton} />
+          <MovieCardContainer key={skeleton}>
+            <MovieSkeleon  />
           </MovieCardContainer>
         ))}
       {data?.map(
