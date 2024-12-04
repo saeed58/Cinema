@@ -5,15 +5,22 @@ import MovieCard from "@/components/MovieCard";
 import MovieCardContainer from "@/components/MovieCardContainer";
 import MovieSkeleon from "@/components/MovieSkeleon";
 import { apiQuery } from "../entities/apiQuery";
+import { Results } from "@/entities/Results";
 
+interface Props {
+  selectedGenre: Results | null;
+}
 const Skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
-const MovieAllList = () => {
+const MovieAllList = ( {selectedGenre} : Props) => {
   const fetchMovies = () =>
     axios
       .get<apiQuery>("https://searchia.ir/api/index/movie", {
         params: {
-          query: "",
+          query: '',
+          facets:'country,genre',
+          filters:'is_active:1',
+          facetFilters: selectedGenre ? 'genre:'+selectedGenre?.source.name_fa: '',
           size: 20,
           sorts: "publish_date<DESC>",
         },
@@ -24,7 +31,7 @@ const MovieAllList = () => {
       .then((res) => res.data.entity.results);
 
   const { data, isPending } = useQuery({
-    queryKey: ["movie"],
+    queryKey: ["movie",selectedGenre],
     queryFn: fetchMovies,
     staleTime: 24 * 60 * 60 * 1000, //24h
   });

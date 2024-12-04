@@ -1,13 +1,13 @@
-import { Box, Grid, GridItem, HStack, Image, Input } from "@chakra-ui/react";
-import logo from "./assets/img/logo.png";
-import { ColorModeButton } from "./components/ui/color-mode";
-import { BsSearch } from "react-icons/bs";
-import { InputGroup } from "./components/ui/input-group";
-import CategoriesList from "./react-query/CategoriesList";
-import MovieAllList from "./react-query/MovieAllList";
-import GenreList from "./react-query/GenreList";
+import { Box, Grid, GridItem, Text, Stack } from "@chakra-ui/react";
+import MovieAllList from "./components/MovieAllList";
+import GenreList from "./components/GenreList";
+import { useState } from "react";
+import { Results } from "./entities/Results";
+import NavBar from "./components/NavBar";
 
 const App = () => {
+  const [selectedGenre, setSelectedGenre] = useState<Results | null>(null);
+
   return (
     <>
       <Grid
@@ -22,15 +22,7 @@ const App = () => {
         gap="0"
       >
         <GridItem area="nav">
-          <HStack padding="10px">
-            <Image src={logo} height="80px"></Image>
-
-            <InputGroup flex="fit-content" startElement={<BsSearch />}>
-              <Input placeholder="Smooth Movie ..." borderRadius="50px" />
-            </InputGroup>
-
-            <ColorModeButton />
-          </HStack>
+          <NavBar />
         </GridItem>
 
         <GridItem area="aside" hideBelow="md">
@@ -41,7 +33,7 @@ const App = () => {
             scrollBehavior="smooth"
             scrollbar="hidden"
           >
-            <GenreList />
+            <GenreList onSelectGenre={(genre) => setSelectedGenre(genre)} />
             {/* <CategoriesList /> */}
           </Box>
         </GridItem>
@@ -53,7 +45,12 @@ const App = () => {
             scrollBehavior="smooth"
             scrollbar="hidden"
           >
-            <MovieAllList />
+            <Stack marginBottom={5}>
+              <Text fontSize="xl">
+                {selectedGenre ? "ژانر " + selectedGenre.source.name_fa : null}
+              </Text>
+            </Stack>
+            <MovieAllList selectedGenre={selectedGenre} />
           </Box>
         </GridItem>
       </Grid>
