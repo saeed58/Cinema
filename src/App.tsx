@@ -1,4 +1,4 @@
-import { Box, Grid, GridItem, Text, Stack } from "@chakra-ui/react";
+import { Box, Grid, GridItem, Text, Stack , Highlight} from "@chakra-ui/react";
 import MovieAllList from "./components/MovieAllList";
 import GenreList from "./components/GenreList";
 import { useState } from "react";
@@ -7,6 +7,7 @@ import NavBar from "./components/NavBar";
 
 const App = () => {
   const [selectedGenre, setSelectedGenre] = useState<Results | null>(null);
+  const [searchText, SetSearchText] = useState<string | null>(null);
 
   return (
     <>
@@ -22,7 +23,7 @@ const App = () => {
         gap="0"
       >
         <GridItem area="nav">
-          <NavBar />
+          <NavBar onSerach={(searchText) => SetSearchText(searchText)} />
         </GridItem>
 
         <GridItem area="aside" hideBelow="md">
@@ -47,10 +48,39 @@ const App = () => {
           >
             <Stack marginBottom={5}>
               <Text fontSize="xl">
-                {selectedGenre ? "ژانر " + selectedGenre.source.name_fa : null}
+                
+                <Highlight
+                  query={searchText ? searchText : ''}
+                  styles={{
+                    px: "0.5",
+                    color: "orange.fg",
+                  }}
+                >
+                   {searchText ? "با موضوع " + searchText : ""}
+                </Highlight>
+
+                
+                {searchText && selectedGenre && " در "}
+                <Highlight
+                  query={selectedGenre ? selectedGenre.source.name_fa : ''}
+                  styles={{
+                    px: "0.5",
+                    color: "orange.fg",
+                  }}
+                >
+                  {selectedGenre ? "ژانر " + selectedGenre.source.name_fa : ''}
+                </Highlight>
+
+
+
+                
+                
               </Text>
             </Stack>
-            <MovieAllList selectedGenre={selectedGenre} />
+            <MovieAllList
+              selectedGenre={selectedGenre}
+              searchText={searchText}
+            />
           </Box>
         </GridItem>
       </Grid>
