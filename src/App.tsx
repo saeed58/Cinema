@@ -4,6 +4,7 @@ import GenreList from "./components/GenreList";
 import { useState } from "react";
 import { Results } from "./entities/Results";
 import NavBar from "./components/NavBar";
+import { CloseButton } from "./components/ui/close-button";
 
 const App = () => {
   const [selectedGenre, setSelectedGenre] = useState<Results | null>(null);
@@ -48,7 +49,7 @@ const App = () => {
           >
             <Stack marginBottom={5}>
               <Text fontSize="xl">
-                
+                {searchText ? <CloseButton onClick={()=>SetSearchText(null)} /> : null}
                 <Highlight
                   query={searchText ? searchText : ''}
                   styles={{
@@ -56,11 +57,14 @@ const App = () => {
                     color: "orange.fg",
                   }}
                 >
-                   {searchText ? "با موضوع " + searchText : ""}
+                   {searchText ? "با موضوع " + searchText  : ""}
                 </Highlight>
+                
+                
 
                 
                 {searchText && selectedGenre && " در "}
+                {selectedGenre ? <CloseButton onClick={()=>setSelectedGenre(null)} /> : null}
                 <Highlight
                   query={selectedGenre ? selectedGenre.source.name_fa : ''}
                   styles={{

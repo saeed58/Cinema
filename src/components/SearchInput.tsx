@@ -15,11 +15,12 @@ const SearchInput = ({onSerach} : Props) => {
       style={{ width:'100%'  }}
       onSubmit={(event) => {
         event.preventDefault();
-        ref.current && onSerach(ref.current.value)
+        ref.current && onSerach(ref.current.value);
       }}
     >
       <InputGroup flex="fit-content" startElement={<BsSearch />}>
         <Input
+          name="search"
           ref={ref}
           placeholder="جستچوی فیلم و سریال در ژانر های مختلف  "
           borderRadius="50px"
