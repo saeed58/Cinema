@@ -1,4 +1,4 @@
-import { Button, SimpleGrid, Text, useStatusStyles } from "@chakra-ui/react";
+import { Button, SimpleGrid, Spinner, Text, useStatusStyles } from "@chakra-ui/react";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import MovieCard from "@/components/MovieCard";
@@ -7,6 +7,7 @@ import MovieSkeleon from "@/components/MovieSkeleon";
 import { apiQuery } from "../entities/apiQuery";
 import { Results } from "@/entities/Results";
 import React, { useState } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 interface Props {
   selectedGenre: Results | null;
@@ -50,45 +51,64 @@ const MovieAllList = ({ selectedGenre, searchText }: Props) => {
     queryFn: fetchMovies,
     initialPageParam: 0,
     getNextPageParam: (lastPage, allPages) => {
-      return (lastPage.totalHits / pageSize) > allPages.length
-        ? allPages.length +pageSize-1
+     
+      return lastPage.totalHits > allPages.length*pageSize
+        ? allPages.length*pageSize
         : undefined;
+      
     },
     staleTime: 24 * 60 * 60 * 1000, //24h
   });
-  
+
+  const fetchcount = data?.pages.reduce((total,page) => total+page.results.length , 0) || 0;
+  const total = data?.pages.reduce((total,page)=> page.totalHits+0,0) || 0;
   return (
     <>
-      
-      <Text color='gray.600' fontSize='sm' marginBottom={2}>تعداد رکورد :  </Text>
-      <SimpleGrid
-        columns={{ xl: 6, lg: 5, md: 4, mdDown: 2 }}
-        marginLeft={5}
-        gap={5}
-      >
-        {isPending &&
-          Skeletons.map((skeleton) => (
-            <MovieCardContainer key={skeleton}>
-              <MovieSkeleon />
-            </MovieCardContainer>
-          ))}
+      <InfiniteScroll
+        dataLength =  {fetchcount}
+        hasMore = {hasNextPage}
+        next = {() => fetchNextPage()}
+        loader = {<Spinner color="blue.500" borderWidth="4px" size='xl'/>}
         
-        {data?.pages.map((page, index) => (
+
+
+      >
+        <Text color="gray.600" fontSize="sm" marginBottom={2}>
+          تعداد رکورد : {total}
+        </Text>
+        
+        <SimpleGrid
           
-          <React.Fragment key={index}>
-            {page.results.map(
-              (movie) =>
-                movie.source.is_active == 1 && (
-                  <MovieCardContainer key={movie.documentId}>
-                    <MovieCard movie={movie.source} />
-                  </MovieCardContainer>
-                )
-            )}
-          </React.Fragment>
-        ))}
-      </SimpleGrid>
-      {hasNextPage  &&  <Button onClick={()=>fetchNextPage()}>{isFetching ? 'در حال بارگذاری ...' : 'بیشتر'} </Button> }
-      
+          columns={{ xl: 6, lg: 5, md: 4, mdDown: 2 }}
+          marginLeft={5}
+          gap={5}
+        >
+          {isPending &&
+            Skeletons.map((skeleton) => (
+              <MovieCardContainer key={skeleton}>
+                <MovieSkeleon />
+              </MovieCardContainer>
+            ))}
+
+          {data?.pages.map((page, index) => (
+            <React.Fragment key={index}>
+              {page.results.map(
+                (movie) =>
+                  movie.source.is_active == 1 && (
+                    <MovieCardContainer key={movie.documentId}>
+                      <MovieCard movie={movie.source} />
+                    </MovieCardContainer>
+                  )
+              )}
+            </React.Fragment>
+          ))}
+        </SimpleGrid>
+      </InfiniteScroll>
+      {/* {hasNextPage && (
+        <Button onClick={() => fetchNextPage()} marginBottom='50px'>
+          {isFetching ? "در حال بارگذاری ..." : "بیشتر"}{" "}
+        </Button>
+      )} */}
     </>
   );
 };

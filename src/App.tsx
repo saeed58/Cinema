@@ -24,11 +24,13 @@ const App = () => {
         gap="0"
       >
         <GridItem area="nav">
-          <NavBar onSerach={(searchText) => SetSearchText(searchText)} />
+          <NavBar  onSerach={(searchText) => SetSearchText(searchText)} />
         </GridItem>
 
         <GridItem area="aside" hideBelow="md">
           <Box
+            position='fixed'
+            marginTop='100px'
             marginRight={5}
             maxH="82vh"
             overflowY="auto"
@@ -42,10 +44,11 @@ const App = () => {
 
         <GridItem area="main">
           <Box
-            maxH="82vh"
+            // maxH="82vh"
+            marginTop='100px'
             overflowY="auto"
             scrollBehavior="smooth"
-            scrollbar="hidden"
+            // scrollbar="hidden"
           >
             <Stack marginBottom={5}>
               <Text fontSize="xl">
