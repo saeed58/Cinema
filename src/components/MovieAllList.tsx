@@ -15,7 +15,7 @@ interface Props {
 }
 
 const Skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-const pageSize = 10;
+const pageSize = 20;
 const MovieAllList = ({ selectedGenre, searchText }: Props) => {
   const fetchMovies = ({ pageParam = 0 }) =>
     axios
@@ -83,7 +83,7 @@ const MovieAllList = ({ selectedGenre, searchText }: Props) => {
           marginLeft={5}
           gap={5}
         >
-          {isPending &&
+          {isFetching &&
             Skeletons.map((skeleton) => (
               <MovieCardContainer key={skeleton}>
                 <MovieSkeleon />
