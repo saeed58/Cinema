@@ -26,6 +26,8 @@ const GenreList = ({ onSelectGenre }: Props) => {
   const { data } = useQuery({
     queryKey: ["genre"],
     queryFn: fetchGenre,
+    staleTime: 24 * 60 * 60 * 1000, //24h
+    
   });
   return (
     <Stack align="flex-start" flex={1} gap={6}>

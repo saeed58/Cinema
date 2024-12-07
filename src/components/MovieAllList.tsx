@@ -45,7 +45,7 @@ const MovieAllList = ( {selectedGenre , searchText} : Props) => {
     <>
     
     <Text color='gray.600' fontSize='sm' marginBottom={2}>تعداد رکورد :  {totalHint}</Text>
-    <SimpleGrid columns={{ xl: 6, lg: 4, md: 3, sm: 1 }} marginLeft={5} gap={5}>
+    <SimpleGrid columns={{ xl: 6, lg: 5, md: 4, mdDown: 2 }} marginLeft={5} gap={5}>
       {isPending &&
         Skeletons.map((skeleton) => (
           <MovieCardContainer key={skeleton}>
