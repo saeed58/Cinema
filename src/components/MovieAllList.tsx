@@ -1,12 +1,12 @@
-import { Button, SimpleGrid, Spinner, Text, useStatusStyles } from "@chakra-ui/react";
-import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
+import {SimpleGrid, Spinner, Text} from "@chakra-ui/react";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import axios from "axios";
 import MovieCard from "@/components/MovieCard";
 import MovieCardContainer from "@/components/MovieCardContainer";
 import MovieSkeleon from "@/components/MovieSkeleon";
 import { apiQuery } from "../entities/apiQuery";
 import { Results } from "@/entities/Results";
-import React, { useState } from "react";
+import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 interface Props {
@@ -39,13 +39,9 @@ const MovieAllList = ({ selectedGenre, searchText }: Props) => {
 
   const {
     data,
-    error,
     fetchNextPage,
     hasNextPage,
-    isFetching,
-    isFetchingNextPage,
-    status,
-    isPending,
+    isFetching
   } = useInfiniteQuery({
     queryKey: ["movie", selectedGenre, searchText],
     queryFn: fetchMovies,
@@ -61,7 +57,7 @@ const MovieAllList = ({ selectedGenre, searchText }: Props) => {
   });
 
   const fetchcount = data?.pages.reduce((total,page) => total+page.results.length , 0) || 0;
-  const total = data?.pages.reduce((total,page)=> page.totalHits+0,0) || 0;
+  const total = data?.pages.reduce((total,page)=> page.totalHits+0-1+total/total,0) || 0;
   return (
     <>
       <InfiniteScroll
