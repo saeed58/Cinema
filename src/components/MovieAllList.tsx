@@ -1,52 +1,23 @@
 import { SimpleGrid, Spinner, Text } from "@chakra-ui/react";
-import { useInfiniteQuery } from "@tanstack/react-query";
-import axios from "axios";
 import MovieCard from "@/components/MovieCard";
 import MovieCardContainer from "@/components/MovieCardContainer";
 import MovieSkeleon from "@/components/MovieSkeleon";
-import { apiQuery } from "../entities/apiQuery";
-import { Results } from "@/entities/Results";
 import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import apiClient from "@/services/apiClient";
+import useMovies from "@/Hooks/useMovies";
+import { Results } from "@/entities/Results";
 
 interface Props {
   selectedGenre: Results | null;
   searchText: String | null;
 }
-
 const Skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-const pageSize = 20;
+
 const MovieAllList = ({ selectedGenre, searchText }: Props) => {
-  const fetchMovies = ({ pageParam = 0 }) =>
-    apiClient
-      .get<apiQuery>("/movie", {
-        params: {
-          query: searchText ? searchText : "",
-          facets: "country,genre",
-          filters: "is_active:1",
-          facetFilters: selectedGenre
-            ? "genre:" + selectedGenre?.source.name_fa
-            : "",
-          from: pageParam,
-          size: pageSize,
-          sorts: "publish_date<DESC>",
-        },
-      })
-      .then((res) => res.data.entity);
-
-  const { data, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery({
-    queryKey: ["movie", selectedGenre, searchText],
-    queryFn: fetchMovies,
-    initialPageParam: 0,
-    getNextPageParam: (lastPage, allPages) => {
-      return lastPage.totalHits > allPages.length * pageSize
-        ? allPages.length * pageSize
-        : undefined;
-    },
-    staleTime: 24 * 60 * 60 * 1000, //24h
+  const { data, fetchNextPage, hasNextPage, isFetching } = useMovies({
+    selectedGenre,
+    searchText,
   });
-
   const fetchcount =
     data?.pages.reduce((total, page) => total + page.results.length, 0) || 0;
   const total =
