@@ -2,10 +2,12 @@ import { apiQuery } from "@/entities/Response";
 import apiClient from "@/services/apiClient";
 import { useQuery } from "@tanstack/react-query";
 
-const useGenres = () => {
+
+
+const useData = (endpoint : string) => {
     const fetchGenre = () =>
         apiClient
-            .get<apiQuery>('/genre' , {
+            .get<apiQuery>(endpoint , {
               params: {
               query: "",
               size: 50,
@@ -24,4 +26,4 @@ const useGenres = () => {
 
 }
 
-export default useGenres;
+export default useData;

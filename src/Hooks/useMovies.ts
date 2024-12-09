@@ -1,4 +1,4 @@
-import { apiQuery } from "@/entities/apiQuery";
+import { apiQuery } from "@/entities/Response";
 import { Results } from "@/entities/Results";
 import apiClient from "@/services/apiClient";
 import { useInfiniteQuery } from "@tanstack/react-query";
