@@ -8,6 +8,7 @@ import { apiQuery } from "../entities/apiQuery";
 import { Results } from "@/entities/Results";
 import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
+import apiClient from "@/services/apiClient";
 
 interface Props {
   selectedGenre: Results | null;
@@ -18,8 +19,8 @@ const Skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 const pageSize = 20;
 const MovieAllList = ({ selectedGenre, searchText }: Props) => {
   const fetchMovies = ({ pageParam = 0 }) =>
-    axios
-      .get<apiQuery>("https://searchia.ir/api/index/movie", {
+    apiClient
+      .get<apiQuery>('/movie' ,{
         params: {
           query: searchText ? searchText : "",
           facets: "country,genre",
@@ -31,11 +32,9 @@ const MovieAllList = ({ selectedGenre, searchText }: Props) => {
           size: pageSize,
           sorts: "publish_date<DESC>",
         },
-        headers: {
-          apikey: "mLpqZlvuCXk1vypda5givd5GqgCyDi8u",
-        },
       })
       .then((res) => res.data.entity);
+      
 
   const {
     data,

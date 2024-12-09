@@ -1,31 +1,28 @@
 import { apiQuery } from "@/entities/apiQuery";
 import { Results } from "@/entities/Results";
+import apiClient from "@/services/apiClient";
 import { Button } from "@chakra-ui/react";
 import { List } from "@chakra-ui/react/list";
 import { Stack } from "@chakra-ui/react/stack";
-
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+
 interface Props {
   onSelectGenre: (genre: Results) => void;
 }
 const GenreList = ({ onSelectGenre }: Props) => {
   const fetchGenre = () =>
-    axios
-      .get<apiQuery>("https://searchia.ir/api/index/genre", {
-        params: {
+    apiClient
+        .get<apiQuery>('/genre' , {
+          params: {
           query: "",
           size: 50,
-        },
-        headers: {
-          apikey: "mLpqZlvuCXk1vypda5givd5GqgCyDi8u",
-        },
-      })
-      .then((res) => res.data.entity.results);
+        }},)
+        .then((res) => res.data.entity.results);
+      
 
   const { data } = useQuery({
     queryKey: ["genre"],
-    queryFn: fetchGenre,
+    queryFn: fetchGenre ,
     staleTime: 24 * 60 * 60 * 1000, //24h
     
   });
