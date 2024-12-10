@@ -2,12 +2,12 @@ import { Box, Grid, GridItem, Text, Stack , Highlight} from "@chakra-ui/react";
 import MovieAllList from "./components/MovieAllList";
 import GenreList from "./components/GenreList";
 import { useState } from "react";
-import { Results } from "./entities/Results";
 import NavBar from "./components/NavBar";
 import { CloseButton } from "./components/ui/close-button";
+import { Genres } from "./entities/Genres";
 
 const App = () => {
-  const [selectedGenre, setSelectedGenre] = useState<Results | null>(null);
+  const [selectedGenre, setSelectedGenre] = useState<Genres | null>(null);
   const [searchText, SetSearchText] = useState<string | null>(null);
 
   return (
@@ -69,13 +69,13 @@ const App = () => {
                 {searchText && selectedGenre && " در "}
                 {selectedGenre ? <CloseButton onClick={()=>setSelectedGenre(null)} /> : null}
                 <Highlight
-                  query={selectedGenre ? selectedGenre.source.name_fa : ''}
+                  query={selectedGenre ? selectedGenre.name_fa : ''}
                   styles={{
                     px: "0.5",
                     color: "orange.fg",
                   }}
                 >
-                  {selectedGenre ? "ژانر " + selectedGenre.source.name_fa : ''}
+                  {selectedGenre ? "ژانر " + selectedGenre.name_fa : ''}
                 </Highlight>
 
 

@@ -1,5 +1,5 @@
 import { Entity } from "./Entity";
 
-export interface apiQuery {
-  entity: Entity;
+export interface Response<T> {
+  entity: Entity<T>;
 }

@@ -1,5 +1,5 @@
-export interface Genre {
+export interface Genres {
   for_search: number;
-  id: number;
   name_fa: string;
+
 }

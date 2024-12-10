@@ -5,10 +5,11 @@ import MovieSkeleon from "@/components/MovieSkeleon";
 import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import useMovies from "@/Hooks/useMovies";
-import { Results } from "@/entities/Results";
+
+import { Genres } from "@/entities/Genres";
 
 interface Props {
-  selectedGenre: Results | null;
+  selectedGenre: Genres | null;
   searchText: String | null;
 }
 const Skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];

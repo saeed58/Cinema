@@ -1,4 +1,4 @@
-import { Source } from "@/entities/Source";
+import { Movies } from "@/entities/Movies";
 import {
   Badge,
   Box,
@@ -12,7 +12,7 @@ import {
 import no_image from "../../public/assets/No_image.png";
 const limit = 17;
 interface Props {
-  movie: Source;
+  movie: Movies;
 }
 const MovieCard = ({ movie }: Props) => (
   <Card.Root variant="subtle">

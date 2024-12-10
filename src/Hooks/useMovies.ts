@@ -1,10 +1,12 @@
-import { apiQuery } from "@/entities/Response";
-import { Results } from "@/entities/Results";
+import { Genres } from "@/entities/Genres";
+import { Movies } from "@/entities/Movies";
+import { Response } from "@/entities/Response";
+
 import apiClient from "@/services/apiClient";
 import { useInfiniteQuery } from "@tanstack/react-query";
 
 interface Props {
-    selectedGenre: Results | null;
+    selectedGenre: Genres | null;
     searchText: String | null;
   }
 
@@ -13,13 +15,13 @@ const useMovies = ( {selectedGenre, searchText} : Props  ) => {
 
     const fetchMovies = ({ pageParam = 0 }) =>
         apiClient
-          .get<apiQuery>("/movie", {
+          .get<Response<Movies>>("/movie", {
             params: {
               query: searchText ? searchText : "",
               facets: "country,genre",
               filters: "is_active:1",
               facetFilters: selectedGenre
-                ? "genre:" + selectedGenre?.source.name_fa
+                ? "genre:" + selectedGenre?.name_fa
                 : "",
               from: pageParam,
               size: pageSize,

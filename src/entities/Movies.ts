@@ -1,6 +1,7 @@
-import { Genre } from "./Genre";
 
-export interface Source {
+import { MovieGenre } from "./MoveGenres";
+
+export interface Movies {
   title_fa: string;
   title_en: string;
   imdb_rank: number;
@@ -9,10 +10,5 @@ export interface Source {
   country: string;
   publish_date: string;
   is_series: number;
-  genres: Genre[];
-
-  name_fa:string; //Genre
-  for_search: number; //Genre
-
-
+  genres: MovieGenre[];
 }

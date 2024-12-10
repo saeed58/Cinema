@@ -1,8 +1,6 @@
-import { Source } from "./Source";
 
-
-export interface Results {
+export interface Results<T> {
   documentId: number;
-  source: Source;
-  
+  source: T;
+
 }

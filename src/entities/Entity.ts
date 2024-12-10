@@ -1,6 +1,6 @@
 import { Results } from "./Results";
 
-export interface Entity {
+export interface Entity<T> {
   totalHits: number;
-  results: Results[];
+  results: Results<T>[];
 }
