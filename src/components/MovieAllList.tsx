@@ -33,6 +33,7 @@ const MovieAllList = ({ selectedGenre, searchText }: Props) => {
         hasMore={hasNextPage}
         next={() => fetchNextPage()}
         loader={<Spinner color="blue.500" borderWidth="4px" size="xl" />}
+        
       >
         <Text color="gray.600" fontSize="sm" marginBottom={2}>
           تعداد رکورد : {total}
@@ -40,8 +41,8 @@ const MovieAllList = ({ selectedGenre, searchText }: Props) => {
 
         <SimpleGrid
           columns={{ xl: 6, lg: 5, md: 4, mdDown: 2 }}
-          marginLeft={5}
-          gap={5}
+          margin={3}
+          gap={3}
         >
           {isFetching &&
             Skeletons.map((skeleton) => (

@@ -1,10 +1,11 @@
-import { Box, Grid, GridItem, Text, Stack , Highlight} from "@chakra-ui/react";
+import { Box, Grid, GridItem, Text, Stack, Highlight } from "@chakra-ui/react";
 import MovieAllList from "./components/MovieAllList";
 import GenreList from "./components/GenreList";
 import { useState } from "react";
-import NavBar from "./components/NavBar";
+import SearchBox from "./components/SearchBox";
 import { CloseButton } from "./components/ui/close-button";
 import { Genres } from "./entities/Genres";
+import { useColorModeValue } from "./components/ui/color-mode";
 
 const App = () => {
   const [selectedGenre, setSelectedGenre] = useState<Genres | null>(null);
@@ -19,23 +20,18 @@ const App = () => {
         }}
         templateColumns={{
           base: "1fr",
-          md: "250px 1fr",
+          md: "150px 1fr",
         }}
-        gap="0"
+        gapY="60px"
       >
-        <GridItem area="nav">
-          <NavBar  onSerach={(searchText) => SetSearchText(searchText)} />
-        </GridItem>
-
         <GridItem area="aside" hideBelow="md">
           <Box
-            position='fixed'
-            marginTop='100px'
-            marginRight={5}
+            position="fixed"
+            marginRight={1}
             maxH="82vh"
             overflowY="auto"
             scrollBehavior="smooth"
-            scrollbar="hidden"
+            scrollbar='hidden'
           >
             <GenreList onSelectGenre={(genre) => setSelectedGenre(genre)} />
             {/* <CategoriesList /> */}
@@ -45,49 +41,56 @@ const App = () => {
         <GridItem area="main">
           <Box
             // maxH="82vh"
-            marginTop='100px'
+
             overflowY="auto"
             scrollBehavior="smooth"
             // scrollbar="hidden"
           >
-            <Stack marginBottom={5}>
-              <Text fontSize="xl">
-                {searchText ? <CloseButton onClick={()=>SetSearchText(null)} /> : null}
-                <Highlight
-                  query={searchText ? searchText : ''}
-                  styles={{
-                    px: "0.5",
-                    color: "orange.fg",
-                  }}
-                >
-                   {searchText ? "با موضوع " + searchText  : ""}
-                </Highlight>
-                
-                
+            <GridItem
+              area="nav"
+              position="fixed"
+              w="full"
+              zIndex="190"
+              bg={useColorModeValue("white", "gray.900")}
+            >
+              <SearchBox onSerach={(searchText) => SetSearchText(searchText)}  />
+              <Stack >
+                <Text fontSize="sm">
+                  {searchText ? (
+                    <CloseButton onClick={() => SetSearchText(null)} />
+                  ) : null}
+                  <Highlight
+                    query={searchText ? searchText : ""}
+                    styles={{
+                      px: "0.5",
+                      color: "orange.fg",
+                    }}
+                  >
+                    {searchText ? "با موضوع " + searchText : ""}
+                  </Highlight>
 
-                
-                {searchText && selectedGenre && " در "}
-                {selectedGenre ? <CloseButton onClick={()=>setSelectedGenre(null)} /> : null}
-                <Highlight
-                  query={selectedGenre ? selectedGenre.name_fa : ''}
-                  styles={{
-                    px: "0.5",
-                    color: "orange.fg",
-                  }}
-                >
-                  {selectedGenre ? "ژانر " + selectedGenre.name_fa : ''}
-                </Highlight>
-
-
-
-                
-                
-              </Text>
-            </Stack>
-            <MovieAllList
-              selectedGenre={selectedGenre}
-              searchText={searchText}
-            />
+                  {searchText && selectedGenre && " در "}
+                  {selectedGenre ? (
+                    <CloseButton onClick={() => setSelectedGenre(null)} />
+                  ) : null}
+                  <Highlight
+                    query={selectedGenre ? selectedGenre.name_fa : ""}
+                    styles={{
+                      px: "0.5",
+                      color: "orange.fg",
+                    }}
+                  >
+                    {selectedGenre ? "ژانر " + selectedGenre.name_fa : ""}
+                  </Highlight>
+                </Text>
+              </Stack>
+            </GridItem>
+            <GridItem  mt={(searchText || selectedGenre) ? "100px" : "60px"}>
+              <MovieAllList
+                selectedGenre={selectedGenre}
+                searchText={searchText}
+              />
+            </GridItem>
           </Box>
         </GridItem>
       </Grid>

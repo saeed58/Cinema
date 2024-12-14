@@ -3,16 +3,14 @@ import { InputGroup } from "./ui/input-group";
 import { BsSearch } from "react-icons/bs";
 import { useRef } from "react";
 
-interface Props{
-
-  onSerach : (searchText : string) => void;
+interface Props {
+  onSerach: (searchText: string) => void;
 }
 
-const SearchInput = ({onSerach} : Props) => {
+const SearchInput = ({ onSerach }: Props) => {
   const ref = useRef<HTMLInputElement>(null);
   return (
     <form
-      style={{ width:'100%'  }}
       onSubmit={(event) => {
         event.preventDefault();
         ref.current && onSerach(ref.current.value);
@@ -20,9 +18,10 @@ const SearchInput = ({onSerach} : Props) => {
     >
       <InputGroup flex="fit-content" startElement={<BsSearch />}>
         <Input
+          w="300px"
           name="search"
           ref={ref}
-          placeholder="جستچوی فیلم و سریال در ژانر های مختلف  "
+          placeholder="جستجوی فیلم و سریال در ژانر های مختلف  "
           borderRadius="50px"
         />
       </InputGroup>

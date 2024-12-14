@@ -44,14 +44,14 @@ const MovieCard = ({ movie }: Props) => (
 
       <HStack fontSize="sm" color="gray.500">
         {movie.genres.map((genre) => (
-          <Badge size="xs" variant="outline" color="gray.500" key={genre.id}>
+          <Badge size="xs" variant="outline" color="gray.500" key={genre.name_fa}>
             {genre.name_fa}
           </Badge>
         ))}
       </HStack>
 
       <HStack marginTop={1}>
-        <Badge size="sm" variant="solid" colorPalette="teal">
+        <Badge size="sm" variant="solid" colorPalette="teal" display={{ base : 'none' , md : 'flex' }}>
           {movie.publish_date + " " + movie.country}
         </Badge>
         {movie.is_series == 1 ? (
