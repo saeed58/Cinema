@@ -20,12 +20,14 @@ const MovieAllList = ({ selectedGenre, searchText }: Props) => {
     searchText,
   });
   const fetchcount =
-    data?.pages.reduce((total, page) => total + page.results.length, 0) || 0;
+    data?.pages.reduce((total, page) => total + page.totalHits,0) || 0 ;
   const total =
     data?.pages.reduce(
-      (total, page) => page.totalHits + 0 - 1 + total / total,
+      (total, page) => page.totalHits+total,
       0
     ) || 0;
+
+ 
   return (
     <>
       <InfiniteScroll
@@ -35,7 +37,7 @@ const MovieAllList = ({ selectedGenre, searchText }: Props) => {
         loader={<Spinner color="blue.500" borderWidth="4px" size="xl" />}
         
       >
-        <Text color="gray.600" fontSize="sm" margin={2}>
+        <Text color="gray.600" fontSize="sm" margin={3}>
           تعداد رکورد : {total}
         </Text>
 
