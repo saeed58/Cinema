@@ -1,13 +1,13 @@
 import { Box, Grid, GridItem, Text, Stack, Highlight } from "@chakra-ui/react";
-import MovieAllList from "./components/MovieAllList";
-import GenreList from "./components/GenreList";
+import MovieAllList from "../components/MovieAllList";
+import GenreList from "../components/GenreList";
 import { useState } from "react";
-import SearchBox from "./components/SearchBox";
-import { CloseButton } from "./components/ui/close-button";
-import { Genres } from "./entities/Genres";
-import { useColorModeValue } from "./components/ui/color-mode";
+import SearchBox from "../components/SearchBox";
+import { CloseButton } from "../components/ui/close-button";
+import { Genres } from "../entities/Genres";
+import { useColorModeValue } from "../components/ui/color-mode";
 
-const App = () => {
+const HomePage = () => {
   const [selectedGenre, setSelectedGenre] = useState<Genres | null>(null);
   const [searchText, SetSearchText] = useState<string | null>(null);
 
@@ -15,26 +15,26 @@ const App = () => {
     <>
       <Grid
         templateAreas={{
-          base: `"nav" "main"`,
-          md: `"nav nav" "aside main"`,
+          base: "main",
+          md: `"aside main"`,
         }}
         templateColumns={{
           base: "1fr",
           md: "150px 1fr",
         }}
-        gapY="60px"
+        
       >
         <GridItem area="aside" hideBelow="md">
           <Box
-            position="fixed"
+            // position="fixed"
             marginRight={1}
-            maxH="82vh"
-            overflowY="auto"
-            scrollBehavior="smooth"
-            scrollbar='hidden'
+            // maxH="82vh"
+            // overflowY="auto"
+            // scrollBehavior="smooth"
+            // scrollbar='hidden'
           >
             <GenreList onSelectGenre={(genre) => setSelectedGenre(genre)} />
-            {/* <CategoriesList /> */}
+           
           </Box>
         </GridItem>
 
@@ -48,7 +48,7 @@ const App = () => {
           >
             <GridItem
               area="nav"
-              position="fixed"
+             
               w="full"
               zIndex="190"
               bg={useColorModeValue("white", "gray.900")}
@@ -85,7 +85,7 @@ const App = () => {
                 </Text>
               </Stack>
             </GridItem>
-            <GridItem  mt={(searchText || selectedGenre) ? "100px" : "60px"}>
+            <GridItem  mt={(searchText || selectedGenre) ? "5px" : ""}>
               <MovieAllList
                 selectedGenre={selectedGenre}
                 searchText={searchText}
@@ -98,4 +98,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default HomePage;

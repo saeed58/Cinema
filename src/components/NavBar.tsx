@@ -15,7 +15,7 @@ import { FaXmark} from "react-icons/fa6";
 const NavBar = () => {
   const [on, toggle] = useToggle(true);
   return (
-    <Box pos='fixed' w='full' zIndex='250' >
+    <Box  w='full' zIndex='250' >
       <Box >
         <Flex
 

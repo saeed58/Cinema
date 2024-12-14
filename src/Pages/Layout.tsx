@@ -1,6 +1,6 @@
-import App from "../App";
-import NavBar from "./NavBar";
 
+import NavBar from "../components/NavBar";
+import { Outlet } from "react-router";
 
 
 const Layout = () => {
@@ -8,7 +8,7 @@ const Layout = () => {
   return (
     <>
       <NavBar/>
-      <App/>
+      <Outlet />
     </>
   );
 };
