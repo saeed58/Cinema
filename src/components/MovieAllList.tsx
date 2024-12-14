@@ -35,7 +35,7 @@ const MovieAllList = ({ selectedGenre, searchText }: Props) => {
         loader={<Spinner color="blue.500" borderWidth="4px" size="xl" />}
         
       >
-        <Text color="gray.600" fontSize="sm" marginBottom={2}>
+        <Text color="gray.600" fontSize="sm" margin={2}>
           تعداد رکورد : {total}
         </Text>
 
