@@ -3,6 +3,7 @@ import Layout from "./Pages/Layout";
 import HomePage from "./Pages/HomePage";
 import MovieDetailPage from "./Pages/MovieDetailPage";
 import Error from "./Pages/Error";
+import SeriesDetail from "./Pages/SeriesDetail";
 
 const router = createBrowserRouter([
   {
@@ -12,6 +13,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <HomePage /> },
       { path: "movie/:id", element: <MovieDetailPage /> },
+      { path: "series/:id", element: <SeriesDetail /> },
     ],
   },
 ]);

@@ -53,7 +53,7 @@ const MovieAllList = ({ selectedGenre, searchText }: Props) => {
               {page.results.map(
                 (movie) =>
                   movie.source.is_active == 1 && (
-                    <Link to={'movie/'+movie.documentId} key={movie.documentId}>
+                    <Link to={(movie.source.is_series ? 'series/' :'movie/')+movie.documentId} key={movie.documentId}>
                       
                       <MovieCardContainer >
                         <MovieCard movie={movie.source} />
