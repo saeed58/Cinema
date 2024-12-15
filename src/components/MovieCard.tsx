@@ -37,6 +37,7 @@ const MovieCard = ({ movie }: Props) => (
 
     <Image src={movie.poster_path ? movie.poster_path : no_image} />
     <Box margin="10px">
+      
       <Text fontSize="md">
         {movie.title_fa.substring(0, limit)}
         {movie.title_fa.length > limit ? "..." : null}

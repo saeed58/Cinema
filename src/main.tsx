@@ -5,7 +5,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Provider } from "@/components/ui/provider";
 import  '../public/assets/css/iransans-rtl.css';
 import { RouterProvider } from "react-router";
-import router from "./Routes.tsx";
+import router from "./routes.tsx";
 
 
 

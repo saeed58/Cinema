@@ -5,8 +5,8 @@ import MovieSkeleon from "@/components/MovieSkeleon";
 import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import useMovies from "@/Hooks/useMovies";
-
 import { Genres } from "@/entities/Genres";
+import { Link } from "react-router";
 
 interface Props {
   selectedGenre: Genres | null;
@@ -20,14 +20,10 @@ const MovieAllList = ({ selectedGenre, searchText }: Props) => {
     searchText,
   });
   const fetchcount =
-    data?.pages.reduce((total, page) => total + page.totalHits,0) || 0 ;
+    data?.pages.reduce((total, page) => total + page.totalHits, 0) || 0;
   const total =
-    data?.pages.reduce(
-      (total, page) => page.totalHits+total,
-      0
-    ) || 0;
+    data?.pages.reduce((total, page) => page.totalHits + total, 0) || 0;
 
- 
   return (
     <>
       <InfiniteScroll
@@ -35,7 +31,6 @@ const MovieAllList = ({ selectedGenre, searchText }: Props) => {
         hasMore={hasNextPage}
         next={() => fetchNextPage()}
         loader={<Spinner color="blue.500" borderWidth="4px" size="xl" />}
-        
       >
         <Text color="gray.600" fontSize="sm" margin={3}>
           تعداد رکورد : {total}
@@ -58,9 +53,12 @@ const MovieAllList = ({ selectedGenre, searchText }: Props) => {
               {page.results.map(
                 (movie) =>
                   movie.source.is_active == 1 && (
-                    <MovieCardContainer key={movie.documentId}>
-                      <MovieCard movie={movie.source} />
-                    </MovieCardContainer>
+                    <Link to={'movie/'+movie.documentId} key={movie.documentId}>
+                      
+                      <MovieCardContainer >
+                        <MovieCard movie={movie.source} />
+                      </MovieCardContainer>
+                    </Link>
                   )
               )}
             </React.Fragment>
