@@ -13,7 +13,7 @@ const SeriesDetail = () => {
 
   return (
     <>
-      <Heading fontFamily="iransans_rtl">سریال "{data?.title_fa}"</Heading>
+      <Heading fontFamily="iransans_rtl">{data?.title_fa}</Heading>
       <Text>{data?.description}</Text>
     </>
   );
