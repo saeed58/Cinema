@@ -9,9 +9,9 @@ import {
   StatValueText,
   Text,
 } from "@chakra-ui/react";
-import { Link, useParams } from "react-router";
+import {  useParams } from "react-router";
 import { AiFillStar, AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
-import { useColorModeValue } from "@/components/ui/color-mode";
+
 
 const MovieDetailPage = () => {
   const { id } = useParams();
