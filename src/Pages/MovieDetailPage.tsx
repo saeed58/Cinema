@@ -24,15 +24,15 @@ const MovieDetailPage = () => {
   return (
     <>
       <Box
-        minH="50vh"
+        minH="30vh"
         bgColor={"gray.700"}
         bgSize="cover"
         bgImage={cover}
-        
+        backgroundPosition='center'
         color="white"
         shadow=""
       >
-        <Box minH="30vh" p={7} backdropFilter= 'blur(50px)' >
+        <Box minH="30vh" p={7} backdropFilter= 'blur(50px)' bg='gray.800/70'  >
           <SimpleGrid minChildWidth="200px" gap="10px" mb={3}>
             <Box mb={2}>
               <Text
@@ -49,7 +49,7 @@ const MovieDetailPage = () => {
                   <StatLabel color="white"> دوبله</StatLabel>
                   <StatValueText>
                     {movie?.is_double ? (
-                      <AiOutlineCheck color="green" />
+                      <AiOutlineCheck color='green' />
                     ) : (
                       <AiOutlineClose color="red" />
                     )}
@@ -71,8 +71,7 @@ const MovieDetailPage = () => {
               </Flex>
             </Box>
           </SimpleGrid>
-
-          <Text>{movie?.description}</Text>
+          <Text mt= {{base: '10', md: '20'}}>{movie?.description}</Text>
         </Box>
       </Box>
     </>
