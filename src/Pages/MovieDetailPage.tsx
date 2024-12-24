@@ -2,6 +2,7 @@ import useTmovie from "@/Hooks/Tamashakhoneh/useTMovie";
 import {
  
   Box,
+  defineStyle,
   Flex,
   HStack,
   Image,
@@ -17,7 +18,10 @@ import {  useParams } from "react-router";
 import { AiFillStar, AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
 import { Avatar } from "@/components/ui/avatar";
 
-
+const director = defineStyle({
+  rounded : '80px',
+  backgroundColor : 'green.900'
+})
 const MovieDetailPage = () => {
   const { id } = useParams();
   const { data: movie, error, isFetching } = useTmovie(Number(id));
@@ -87,22 +91,26 @@ const MovieDetailPage = () => {
         
       </Box>
       <Box>
-        <Stack gap={8}>
+        <SimpleGrid gap={8} minChildWidth='150px' m={5}>
           {movie?.casts.map(cast => 
-              <HStack key={cast.fullname_en} gap='1'>
-                <Avatar
-                name={cast.fullname_fa}
-                src={cast.profile_picture}
-                size='lg'
-              />
-              <Stack>
-                <Text fontWeight='medium'>{cast.fullname_fa}</Text>
-                <Text color="fg.muted" textStyle="sm">{cast.cast_role.fa}</Text>
-              </Stack>
-              </HStack>
+
+              <Box>
+                <HStack key={cast.fullname_en} gap='1' css={cast.cast_role.en == 'Director' ? director : ''}>
+                  <Avatar
+                  name={cast.fullname_fa}
+                  src={cast.profile_picture}
+                  width='80px'
+                  height='80px'
+                />
+                <Stack>
+                  <Text fontWeight='medium'>{cast.fullname_fa}</Text>
+                  <Text color="fg.muted" textStyle="sm">{cast.cast_role.fa}</Text>
+                </Stack>
+                </HStack>
+              </Box>
             
           )}
-          </Stack>
+          </SimpleGrid>
         </Box>
     </>
   );
