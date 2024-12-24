@@ -1,9 +1,13 @@
 import useTmovie from "@/Hooks/Tamashakhoneh/useTMovie";
 import {
+ 
   Box,
   Flex,
+  HStack,
+  Image,
   SimpleGrid,
   Spinner,
+  Stack,
   StatLabel,
   StatRoot,
   StatValueText,
@@ -11,6 +15,7 @@ import {
 } from "@chakra-ui/react";
 import {  useParams } from "react-router";
 import { AiFillStar, AiOutlineCheck, AiOutlineClose } from "react-icons/ai";
+import { Avatar } from "@/components/ui/avatar";
 
 
 const MovieDetailPage = () => {
@@ -71,9 +76,34 @@ const MovieDetailPage = () => {
               </Flex>
             </Box>
           </SimpleGrid>
+          <Box  >
+            <Image src={movie?.cover_path} fit='cover' rounded='5px'/>
+            <SimpleGrid minChildWidth='50px' >
+              {movie?.screenshots.map(screenshot => <Image src={screenshot}  />)}
+            </SimpleGrid>
+          </Box>
           <Text mt= {{base: '10', md: '20'}}>{movie?.description}</Text>
         </Box>
+        
       </Box>
+      <Box>
+        <Stack gap={8}>
+          {movie?.casts.map(cast => 
+              <HStack key={cast.fullname_en} gap='1'>
+                <Avatar
+                name={cast.fullname_fa}
+                src={cast.profile_picture}
+                size='lg'
+              />
+              <Stack>
+                <Text fontWeight='medium'>{cast.fullname_fa}</Text>
+                <Text color="fg.muted" textStyle="sm">{cast.cast_role.fa}</Text>
+              </Stack>
+              </HStack>
+            
+          )}
+          </Stack>
+        </Box>
     </>
   );
 };

@@ -1,3 +1,5 @@
+import { Casts } from "./Casts";
+
 export interface Movie{
     id: number;
     title_fa : string;
@@ -6,5 +8,7 @@ export interface Movie{
     visit_count: number,
     is_double:number;
     cover_path:string;
+    screenshots : [];
+    casts:Casts[]
 
 }
