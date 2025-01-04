@@ -82,6 +82,7 @@ const MovieDetailPage = () => {
           </SimpleGrid>
           <Box  >
             <Image src={movie?.cover_path} fit='cover' rounded='5px'/>
+            
             <SimpleGrid minChildWidth='50px' >
               {movie?.screenshots.map(screenshot => <Image src={screenshot}  />)}
             </SimpleGrid>
